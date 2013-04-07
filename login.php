@@ -7,8 +7,30 @@ if($_SESSION['user_loged']){
     header("Location: /admin/");
 }
 
-if($_REQUEST['user']){
-    
+$error = 0;
+
+$username = $_REQUEST['user'];
+$password = $_REQUEST['pwd'];
+
+
+if($username && $password){
+    try {
+        $db = $GLOBALS["database"]; 
+
+        // Retrieve keys
+        $user = $db->load('users')->get($username);
+        
+        if($user && $user["password"] == $password){
+            $_SESSION['user_loged'] = $username;
+            header("Location: /admin/");
+            exit;
+        }
+        $error = 1;
+    }
+    catch (Exception $e) {
+        echo "no trobat";
+        $error = 1;
+    }
 }
 
 ?>
@@ -72,10 +94,14 @@ if($_REQUEST['user']){
   <body>
 
     <div class="container">
-
-      <form class="form-signin">
+      <form class="form-signin" method="post">
         <h2 class="form-signin-heading">Entrar</h2>
-        <input type="text" name="user" class="input-block-level" placeholder="Usuari">
+        <? if($error == 1){?>
+            <div class="alert alert-error">
+                Username o password incorrecto...
+            </div>
+        <? } ?>
+        <input type="text" name="user" class="input-block-level" value="<?=htmlentities($username)?>" placeholder="Usuari">
         <input type="password" name="pwd" class="input-block-level" placeholder="Password">
         <button class="btn btn-large btn-primary" type="submit">Enviar</button>
       </form>
