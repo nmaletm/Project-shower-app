@@ -5,6 +5,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/class/includes.php";
 
 if($_SESSION['user_loged']){
     header("Location: /admin/");
+	exit();
 }
 
 $error = 0;
@@ -12,23 +13,30 @@ $error = 0;
 $username = $_REQUEST['user'];
 $password = $_REQUEST['pwd'];
 
-
+/*
+$user = new User();
+$user->username = "xxxx";
+$user->email = "xxx@xx.com";
+$user->password = "xxx";
+$db = DB::getInstance();
+$user = $db->set("users",$user->username,serialize($user));
+exit;
+*/
 if($username && $password){
     try {
-        $db = $GLOBALS["database"]; 
+        $db = DB::getInstance();
 
         // Retrieve keys
-        $user = $db->load('users')->get($username);
-        
-        if($user && $user["password"] == $password){
-            $_SESSION['user_loged'] = $username;
+        $user = unserialize($db->get('users',$username));
+
+        if($user && $user->password == $password){
+            $_SESSION['user_loged'] = serialize($user);
             header("Location: /admin/");
             exit;
         }
         $error = 1;
     }
     catch (Exception $e) {
-        echo "no trobat";
         $error = 1;
     }
 }
@@ -43,7 +51,7 @@ if($username && $password){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="<?=$url_static?>/bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 40px;
@@ -77,18 +85,18 @@ if($username && $password){
       }
 
     </style>
-    <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="<?=$url_static?>/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
       <script src="/bootstrap/js/html5shiv.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?=$url_static?>/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?=$url_static?>/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?=$url_static?>/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="<?=$url_static?>/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="<?=$url_static?>/ico/favicon.png">
   </head>
 
   <body>
@@ -108,8 +116,8 @@ if($username && $password){
 
     </div> <!-- /container -->
 
-    <script src="/bootstrap/js/jquery.js"></script>
-    <script src="/bootstrap/js/bootstrap-min.js"></script>
+    <script src="<?=$url_static?>/bootstrap/js/jquery.js"></script>
+    <script src="<?=$url_static?>/bootstrap/js/bootstrap-min.js"></script>
 
   </body>
 </html>

@@ -1,3 +1,6 @@
 [submodule "library/flintstone"]
 	path = library/flintstone
 	url = git://github.com/fire015/flintstone.git
+[submodule "static/LDT"]
+	path = static/LDT
+	url = git://github.com/kueblc/LDT.git

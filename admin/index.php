@@ -1,3 +1,8 @@
+<?
+include "parts/admin.php";
+
+
+?>
 <? include "parts/cap.php";?>
 
 
@@ -40,6 +45,5 @@
               <p><a class="btn" href="#">View details &raquo;</a></p>
             </div><!--/span-->
           </div><!--/row-->
-        </div><!--/span-->
         
 <? include "parts/final.php";?>

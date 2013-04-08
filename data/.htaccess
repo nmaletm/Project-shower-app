@@ -2,6 +2,6 @@ Options +FollowSymLinks
 
 RewriteEngine On
 
-RewriteRule ^(.*)$ http://project.storn.es/ [R=301,L]
+RewriteRule ^(.*)$ / [R=301,L]
 
 

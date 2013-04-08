@@ -1,9 +1,3 @@
-<?
-session_start();
-include_once $_SERVER['DOCUMENT_ROOT']."/class/includes.php";
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,7 +8,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/class/includes.php";
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="<?=$url_static?>/bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -33,19 +27,19 @@ include_once $_SERVER['DOCUMENT_ROOT']."/class/includes.php";
         }
       }
     </style>
-    <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="<?=$url_static?>/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="/bootstrap/js/html5shiv.js"></script>
+      <script src="<?=$url_static?>/bootstrap/js/html5shiv.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?=$url_static?>/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?=$url_static?>/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?=$url_static?>/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="<?=$url_static?>/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="<?=$url_static?>/ico/favicon.png">
   </head>
 
   <body>
@@ -61,8 +55,8 @@ include_once $_SERVER['DOCUMENT_ROOT']."/class/includes.php";
           <a class="brand" href="#"><?=$web_name?></a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              <a class="btn" href="#"><i class="icon-user"></i> <?=$_SESSION['user_loged']['email']?></a>
-              <a href="" class="btn btn-danger"><i class="icon-off icon-white"></i> Log Out</a>
+              <a class="btn" href="#"><i class="icon-user"></i> <?=$GLOBALS["user"]->email?></a>
+              <a href="/admin/logout.php" class="btn btn-danger"><i class="icon-off icon-white"></i> Log Out</a>
             </p>
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -76,26 +70,4 @@ include_once $_SERVER['DOCUMENT_ROOT']."/class/includes.php";
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
         <div class="span9">
