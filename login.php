@@ -116,8 +116,8 @@ if($username && $password){
 
     </div> <!-- /container -->
 
-    <script src="<?=$url_static?>/bootstrap/js/jquery.js"></script>
-    <script src="<?=$url_static?>/bootstrap/js/bootstrap-min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="<?=$url_static?>/bootstrap/js/bootstrap.min.js"></script>
 
   </body>
 </html>

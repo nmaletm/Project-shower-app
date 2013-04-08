@@ -4,3 +4,6 @@
 [submodule "static/LDT"]
 	path = static/LDT
 	url = git://github.com/kueblc/LDT.git
+[submodule "static/iOS-style"]
+	path = static/iOS-style
+	url = git://github.com/taitems/iOS-Inspired-jQuery-Mobile-Theme.git
