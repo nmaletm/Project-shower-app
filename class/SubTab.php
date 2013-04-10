@@ -1,10 +1,11 @@
 <?
 include_once "includes.php";
 
-class User{
-    private $username;
-    private $password;
-	private $email;
+class SubTab{
+    private $id;
+    private $title;
+    private $text;
+    private $background;
 
     function __construct() {
 	

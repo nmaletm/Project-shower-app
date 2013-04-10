@@ -40,6 +40,7 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?=$url_static?>/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="<?=$url_static?>/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="<?=$url_static?>/ico/favicon.png">
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
   </head>
 
   <body>
@@ -56,12 +57,12 @@
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               <a class="btn" href="#"><i class="icon-user"></i> <?=$GLOBALS["user"]->email?></a>
-              <a href="/admin/logout.php" class="btn btn-danger"><i class="icon-off icon-white"></i> Log Out</a>
+              <a href="logout.php" class="btn btn-danger"><i class="icon-off icon-white"></i> Log Out</a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="/admin/">Inicio</a></li>
+              <li><a href="editTab.php">Añadir pestaña</a></li>
+              <li><a href="/">Ver resultado</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

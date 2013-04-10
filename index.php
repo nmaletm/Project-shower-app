@@ -13,6 +13,7 @@ include_once "class/includes.php";
 <? if(!$_REQUEST['noiOS']){ ?>
 	<link href="<?=$url_static?>/iOS-style/ios_inspired/styles.css" rel="stylesheet" />
 <? } ?>
+	<link href="<?=$url_static?>/css/style.css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script>
 	$(document).ready(function(){
@@ -36,6 +37,8 @@ include_once "class/includes.php";
 	});
 	</script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	<script src="<?=$url_static?>/js/tabs.js"></script>
+
 	<style>
 		#footerTabs {
 			background: #FFF -webkit-radial-gradient(circle, #FFF, #dee2e4);
@@ -71,10 +74,24 @@ include_once "class/includes.php";
 </div>
 <div data-role="page" id="tab-2" data-theme="b">
  
-	<div data-role="content"> 
-		Pagina 2
+	<div data-role="content" id="tab-2-page-1"> 
+		Pagina 2 - pag1
 	</div>
-	
+	<div data-role="content" id="tab-2-page-2"> 
+		Pagina 2 - pag2
+	</div>
+	<div data-role="content" id="tab-2-page-3"> 
+		Pagina 2 - pag3
+	</div>
+	<div data-role="prefooter" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" data-content="tab-2-page-1" data-role="prefooter-tab" class="ui-btn-active ui-state-persist">Uno</a></li>
+				<li><a href="#" data-content="tab-2-page-2" data-role="prefooter-tab">Dos</a></li>
+				<li><a href="#" data-content="tab-2-page-3" data-role="prefooter-tab">Tres</a></li>
+			</ul>
+		</div>
+	</div>
 	<div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
 			<ul>

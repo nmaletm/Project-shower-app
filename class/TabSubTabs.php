@@ -1,15 +1,18 @@
 <?
 include_once "includes.php";
 
-class User{
-    private $username;
-    private $password;
-	private $email;
+class TabSubTabs extends Tab{
+    private $subTabs;
 
+	public function getFormInclude(){
+		return "editFormSubTabs.php";
+	}
+	
+	
     function __construct() {
 	
     }
-    
+	
     public function __set($name, $value){
         $this->$name = $value;
     }

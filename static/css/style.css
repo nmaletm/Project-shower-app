@@ -1,0 +1,16 @@
+
+div[data-role=footer]{
+	height: 60px;
+}
+div[data-role=prefooter]{
+	margin-bottom: 60px;
+}
+
+div[data-role=content]{
+	display: none;
+	height: 100%;
+}
+div[data-role=content]:first-child{
+	display: block;
+}
+

@@ -1,11 +1,16 @@
 <?
 include_once "includes.php";
 
-class User{
-    private $username;
-    private $password;
-	private $email;
-
+class Tab{
+    private $id;
+    private $title;
+    private $html;
+    private $background;
+	
+	public function getFormInclude(){
+		return "editFormHTML.php";
+	}
+	
     function __construct() {
 	
     }
