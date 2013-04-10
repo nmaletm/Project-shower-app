@@ -5,9 +5,9 @@ include_once "DBClass.php"; /* The file can't be DB.php because there is another
 include_once "User.php";
 
 include_once "Tab.php";
-include_once "TabController.php";
+include_once "TabHTML.php";
 include_once "TabSubTabs.php";
-include_once "SubTab.php";
+include_once "TabController.php";
 
 
 $web_name = "Project";

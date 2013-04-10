@@ -28,6 +28,7 @@
       }
     </style>
     <link href="<?=$url_static?>/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="<?=$url_static?>/css/style-admin.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -69,6 +70,6 @@
       </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container">
       <div class="row-fluid">
-        <div class="span9">
+        <div class="span12">

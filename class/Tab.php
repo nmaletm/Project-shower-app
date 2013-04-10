@@ -1,14 +1,19 @@
 <?
 include_once "includes.php";
 
-class Tab{
-    private $id;
-    private $title;
-    private $html;
-    private $background;
+abstract class Tab{
+    protected $id;
+    protected $title;
+    protected $background;
+    protected $icon;
 	
-	public function getFormInclude(){
-		return "editFormHTML.php";
+	abstract public function getFormInclude();
+	
+	public function fillDataFromRequest($request){
+		$this->id = stripslashes($request['id']);
+		$this->title = stripslashes($request['title']);
+		$this->background = stripslashes($request['background']);
+		$this->icon = stripslashes($request['icon']);
 	}
 	
     function __construct() {
@@ -22,5 +27,14 @@ class Tab{
     public function __get($name){
         return $this->$name;
     }
+	
+	public function generateRandomId($length = 20) {
+		$characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, strlen($characters) - 1)];
+		}
+		$this->id = $randomString;
+	}
 }
 ?>

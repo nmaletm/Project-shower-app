@@ -2,51 +2,63 @@
 include "parts/admin.php";
 $tc = TabController::getInstance();
 
+$class = $_REQUEST['class'];
 
-if($_REQUEST['mode'] == "add"){
-	$tab = new Tab();
-	$tab->title = stripslashes($_REQUEST['title']);
-	$tab->html = stripslashes($_REQUEST['html']);
-	$tab->id = stripslashes($_REQUEST['id']);
-	
+if($_REQUEST['mode'] == "add" && $class){
+	$tab = new $class();
+	$tab->fillDataFromRequest($_REQUEST);
+
 	$tc->save($tab);
 	header("Location: ?id=".$tab->id);
 	exit;
 }
+
+$isEditing = false;
+$selectClass = false;
+
 $id = $_REQUEST['id'];
 if($id){
 	$tab = $tc->load($id);
+	$isEditing = true;
+}
+else if($class){
+	$tab = new $class();
+	$tab->generateRandomId();
+}
+else{
+	$selectClass = true;
 }
 
-if(!$tab){
-	if($_REQUEST['mode'] == "subTabs"){
-		$tab = new TabSubTabs();
-	}
-	else{
-		$tab = new Tab();
-	}
-}
+
 ?>
 <? include "parts/cap.php";?>
 
 <div class="page-header">
-    <h3>Edit tab</h3>
+    <h3><?=($isEditing)?"Editar pestaña":"Añadir pestaña";?></h3>
 </div>
-<form action="" method="post">
+<? if($selectClass){ ?>
+    <ul class="nav nav-tabs nav-stacked">
+		<li><a href="?class=TabHTML">Pestaña HTML</a></li>
+		<li><a href="?class=TabSubTabs">Pestaña con sub-pestañas</a></li>
+    </ul>
+<? } else{ ?>
+<form action="" method="post" class="editTab">
   <fieldset>
-
+	<input type="hidden" name="id" value="<?=$tab->id?>"/>
     <input type="hidden" name="mode" value="add"/>
+	<input type="hidden" name="class" value="<?=get_class($tab)?>" />
+	<input type="text" name="title" value="<?=$tab->title?>"  placeholder="Titulo" class="input-block-level"/>
+	<input type="text" name="icon" value="<?=$tab->icon?>"  placeholder="Icono de la pestaña" class="input-block-level"/>
+	<input type="text" name="background" value="<?=$tab->background?>"  placeholder="Background image" class="input-block-level"/>
 	
-    <h4>Página</h4>
 	
-<? include "parts/".$tab->getFormInclude(); ?>
-	
-	<h5>Identificador</h5>
-	<input type="text" name="id" value="<?=$tab->id?>" style="width: 100%"/>
-	
-	<h5>Titulo</h5>
-	<input type="text" name="title" value="<?=$tab->title?>" style="width: 100%"/>
-	
+<? 
+//To have the $tab inside the include we put it in the GLOBALS
+$GLOBALS['tab'] = $tab;
+$GLOBALS['isEditing'] = $isEditing;
+include "parts/".$tab->getFormInclude(); 
+?>
+
 
 
     <div class="form-actions">
@@ -55,5 +67,13 @@ if(!$tab){
     </div>
   </fieldset>
 </form>
-
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".uneditable-input").keydown(function(){return false;});
+});
+function cleanString(s){
+	return s.toLowerCase().replace(/[^a-z]+/g, '');;
+}
+</script>
+<? } ?>
 <? include "parts/final.php";?>

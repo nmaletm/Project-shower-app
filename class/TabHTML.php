@@ -1,26 +1,22 @@
 <?
 include_once "includes.php";
 
-/*
-//print_r(json_decode($tab->subTabs));	
-
-*/
-class TabSubTabs extends Tab{
-    private $subTabs;
-
+class TabHTML extends Tab{
+    private $html;
+	
 	public function getFormInclude(){
-		return "editFormSubTabs.php";
+		return "editFormHTML.php";
 	}
 	
 	public function fillDataFromRequest($request){
 		parent::fillDataFromRequest($request);
-		$this->subTabs = stripslashes($request['subTabs']);
+		$this->html = stripslashes($request['html']);
 	}
 	
     function __construct() {
 	
     }
-	
+    
     public function __set($name, $value){
         $this->$name = $value;
     }

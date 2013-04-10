@@ -1,3 +1,9 @@
+<?
+// This page can be only loaded included from /admin/editTab.php
+
+$tab = $GLOBALS['tab'];
+$isEditing = $GLOBALS['isEditing'];
+?>
 	<h5>HTML</h5>
     <textarea rows="3" style="width: 100%; height: 500px;" name="html" id="codeArea"><?=$tab->html?></textarea>
     <br/>
