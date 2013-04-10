@@ -1,5 +1,5 @@
 	<h5>Sub tabs</h5>
-	<div id="placer"></div>
+	<div id="placer" class="sortable"></div>
     <br/>
 	<a href="#" onclick="addTab();" class="btn">Añadir sub pestaña</a>
 	
@@ -16,6 +16,11 @@ $(document).ready(function(){
 		addTab(null);
 	}
 	
+	$(".sortable").sortable({ 
+			cursor: "move",
+			helper : "clone"
+	});
+	$(".sortable .title-subtab").disableSelection();
 });
 
 function addTab(subTab){
@@ -30,8 +35,15 @@ function addTab(subTab){
 	el.find("input[name=title]").keyup(function(){
 		$(this).closest(".subTab").find(".title-subtab span").html($(this).val());
 	});
+	el.find(".title-subtab").click(function(){
+		var el = $(this).closest(".subTab").find(".box");
+		$(".subTab .box").not(el).hide();
+		$(el).toggle();
+	});
+	
 	placer.append(el);
 }
+
 </script>
 
 <div class="repository">
@@ -56,10 +68,18 @@ function addTab(subTab){
 	display: none;
 }
 .subTab{
-	border-bottom: 2px solid #555;
 }
 .box{
 	border: 1px solid #999;
 	padding: 5px;
+	margin: 0px;
+}
+.title-subtab{
+	cursor: pointer;
+	border: 1px solid #999;
+	margin: 0;
+	padding: 5px;
 }
 </style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/css/lightness/jquery-ui-1.10.2.custom.min.css" rel="stylesheet" />
