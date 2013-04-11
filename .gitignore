@@ -1,5 +1,4 @@
 # Data files
 *.dat
 # Image files
-data/img/*
-!data/img/
+data/img/*.*
