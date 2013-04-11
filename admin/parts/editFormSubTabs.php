@@ -15,7 +15,10 @@ $isEditing = $GLOBALS['isEditing'];
 			<div class="box">
 				<input type="hidden" name="SubTab_id" class="input-block-level"/>
 				<input type="text" name="SubTab_title" placeholder="Título" class="input-block-level"/>
-				<input type="text" name="SubTab_background" placeholder="Background image" class="input-block-level"/>
+				<b>Background: </b>
+				<select name="SubTab_background"/>
+					<?=$options_image?>
+				</select><br>
 				<textarea rows="3" style="height: 300px;" name="SubTab_text" placeholder="Texto" class="input-block-level"></textarea>
 			</div>
 		</div>
@@ -51,7 +54,7 @@ function addTab(subTab){
 	if(subTabs){
 		el.find("input[name=SubTab_id]").val(subTab.id);
 		el.find("input[name=SubTab_title]").val(subTab.title);
-		el.find("input[name=SubTab_background]").val(subTab.background);
+		el.find("select[name=SubTab_background]").prepend("<option value='"+subTab.background+"' selected='selected'>"+subTab.background+"</option>");
 		el.find("textarea[name=SubTab_text]").val(subTab.text);
 		el.find(".title-subtab span").html(subTab.title);
 	}
@@ -79,7 +82,7 @@ function getJSON(){
 		var subTab = {};
 		subTab.id = el.find("input[name=SubTab_id]").val();
 		subTab.title = el.find("input[name=SubTab_title]").val();
-		subTab.background = el.find("input[name=SubTab_background]").val();
+		subTab.background = el.find("select[name=SubTab_background]").val();
 		subTab.text = el.find("textarea[name=SubTab_text]").val();
 		res.push(subTab); 
 	});

@@ -29,6 +29,12 @@ else{
 	$selectClass = true;
 }
 
+$ic = ImageController::getInstance();
+$image_list = $ic->getList();
+$options_image = "";
+foreach($image_list as $image){
+	$options_image .= "<option value='".$ic->web_path.$image."'>".$image."</option>";
+}
 
 ?>
 <? include "parts/cap.php";?>
@@ -48,8 +54,16 @@ else{
     <input type="hidden" name="mode" value="add"/>
 	<input type="hidden" name="class" value="<?=get_class($tab)?>" />
 	<input type="text" name="title" value="<?=$tab->title?>"  placeholder="Titulo" class="input-block-level"/>
-	<input type="text" name="icon" value="<?=$tab->icon?>"  placeholder="Icono de la pestaña" class="input-block-level"/>
-	<input type="text" name="background" value="<?=$tab->background?>"  placeholder="Background image" class="input-block-level"/>
+	<h5>Icono de la pestaña</h5>
+	<select name="icon" value="<?=$tab->icon?>" class="input-block-level"/>
+		<?if($tab->icon) echo "<option value='".$tab->icon."'>".$tab->icon."</option>";?>
+		<?=$options_image?>
+	</select>
+	<h5>Background</h5>
+	<select name="background" value="<?=$tab->background?>" class="input-block-level"/>
+		<?if($tab->background) echo "<option value='".$tab->background."'>".$tab->background."</option>";?>
+		<?=$options_image?>
+	</select>
 	
 	
 <? 
@@ -67,13 +81,5 @@ include "parts/".$tab->getFormInclude();
     </div>
   </fieldset>
 </form>
-<script type="text/javascript">
-$(document).ready(function(){
-	$(".uneditable-input").keydown(function(){return false;});
-});
-function cleanString(s){
-	return s.toLowerCase().replace(/[^a-z]+/g, '');;
-}
-</script>
 <? } ?>
 <? include "parts/final.php";?>

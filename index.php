@@ -54,7 +54,7 @@ $tabs = $tc->getAll();
 <?
 
 function getTabs($tabs, $actualId){
-	$res = "<div data-role='footer' data-position='fixed'><div data-role='navbar'>";
+	$res = "<div data-role='footer' data-position='fixed' data-tap-toggle='false'><div data-role='navbar'>";
 	$res .= "<ul>";
 	foreach($tabs as $tab){
 		$res .= "<li><a href='#".$tab->id."' id='btn-".$tab->id."' data-role='tab' data-icon='custom'  class=' ";

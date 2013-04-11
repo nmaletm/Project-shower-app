@@ -9,6 +9,7 @@ include_once "TabHTML.php";
 include_once "TabSubTabs.php";
 include_once "TabController.php";
 
+include_once "ImageController.php";
 
 $web_name = "Project";
 $url_static = "/static/";
