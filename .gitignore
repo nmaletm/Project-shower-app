@@ -2,3 +2,4 @@
 *.dat
 # Image files
 data/img/*
+!data/img/
