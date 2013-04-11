@@ -11,7 +11,7 @@ $isEditing = $GLOBALS['isEditing'];
 	<a href="#" onclick="addTab(); return false;" class="btn"><i class="icon-plus"></i> Añadir sub-pestaña</a>
 	<div class="repository">
 		<div class="subTab navbar">
-			<h4 class="title-subtab navbar-inner">Pestaña: <span></span></h4>
+			<h4 class="title-subtab navbar-inner">Pestaña: <span></span> <i class="pull-right icon-resize-vertical"></i></h4>
 			<div class="box">
 				<input type="hidden" name="SubTab_id" class="input-block-level"/>
 				<input type="text" name="SubTab_title" placeholder="Título" class="input-block-level"/>

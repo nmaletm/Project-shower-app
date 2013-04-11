@@ -51,6 +51,7 @@ foreach($image_list as $image){
 <form action="" method="post" class="editTab">
   <fieldset>
 	<input type="hidden" name="id" value="<?=$tab->id?>"/>
+	<input type="hidden" name="order" value="<?=$tab->order?>"/>
     <input type="hidden" name="mode" value="add"/>
 	<input type="hidden" name="class" value="<?=get_class($tab)?>" />
 	<input type="text" name="title" value="<?=$tab->title?>"  placeholder="Titulo" class="input-block-level"/>

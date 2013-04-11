@@ -30,7 +30,7 @@ class TabController{
 		foreach($keys as $key){
 			array_push($res, unserialize($db->get($this->DB_FILE,$key)));
 		}
-		$this->order($res);
+		$res = $this->order($res);
 		return $res;
     }
 	
@@ -43,6 +43,7 @@ class TabController{
 
 	public function order($list){
 		usort($list, "TabController::cmpTab");
+		return $list;
 	}
     /*  -----  Singleton pattern ----- */
 

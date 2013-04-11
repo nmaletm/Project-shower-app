@@ -54,7 +54,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#"><?=$web_name?></a>
+          <a class="brand" href="index.php"><?=$web_name?></a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               <a class="btn" href="#"><i class="icon-user"></i> <?=$GLOBALS["user"]->email?></a>

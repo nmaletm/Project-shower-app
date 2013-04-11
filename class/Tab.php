@@ -14,6 +14,7 @@ abstract class Tab{
 	
 	public function fillDataFromRequest($request){
 		$this->id = stripslashes($request['id']);
+		$this->order = stripslashes($request['order']);
 		$this->title = stripslashes($request['title']);
 		$this->background = stripslashes($request['background']);
 		$this->icon = stripslashes($request['icon']);

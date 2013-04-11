@@ -2,6 +2,18 @@
 include "parts/admin.php";
 $tc = TabController::getInstance();
 
+if($_REQUEST['mode']){
+	$order_id = explode(",",$_REQUEST['order_id']);
+	$i = 1;
+	foreach($order_id as $id){
+		$tab = $tc->load($id);
+		$tab->order = $i;
+		$tc->save($tab);
+		$i++;
+	}
+	exit();
+}
+
 $tabs = $tc->getAll();
 
 ?>
@@ -11,8 +23,8 @@ $tabs = $tc->getAll();
 <div class="sortable">
 <?
 foreach($tabs as $tab){
-	echo "<div class='navbar order-nav'><div class='navbar-inner '>";
-	echo "<span class='brand'>".$tab->title."</span> <a href='editTab.php?id=".$tab->id."' class='btn pull-right'>Editar</a>";
+	echo "<div class='navbar order-nav' id='".$tab->id."'><div class='navbar-inner'>";
+	echo "<span class='brand'><i class='icon-resize-vertical'></i> ".$tab->title."</span><a href='editTab.php?id=".$tab->id."' class='btn pull-right'><i class='icon-pencil'></i> Editar</a>";
 	echo "</div></div>";
 }
 ?>
@@ -25,7 +37,21 @@ $(document).ready(function(){
 	$(".sortable").sortable({ 
 			cursor: "move",
 			helper : "clone",
-			placeholder: "state-highlight"
+			placeholder: "state-highlight",
+			stop: function(event, ui) {
+				var query = "mode=order&order_id="+getJSON();
+				$.ajax({
+					url: "index.php",
+					type: "post",
+					data: query,
+					error: function() {
+						console.log("theres an error with AJAX");
+					},
+					success: function() {
+						console.log("Saved.");
+					}
+				});
+			}
 	});
 	$(".sortable .navbar-inner").disableSelection();
 	$(".editTab").submit(function(){
@@ -35,17 +61,8 @@ $(document).ready(function(){
 
 
 function getJSON(){
-	var res = [];
-	$("#placer").children().each(function(){
-		var el = $(this).closest(".subTab").find(".box");
-		var subTab = {};
-		subTab.id = el.find("input[name=SubTab_id]").val();
-		subTab.title = el.find("input[name=SubTab_title]").val();
-		subTab.background = el.find("input[name=SubTab_background]").val();
-		subTab.text = el.find("textarea[name=SubTab_text]").val();
-		res.push(subTab); 
-	});
-	return JSON.stringify(res);
+	var sorted = $( ".sortable" ).sortable('toArray').toString();
+	return sorted;
 }
 
 </script>

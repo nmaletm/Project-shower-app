@@ -49,6 +49,17 @@ $tabs = $tc->getAll();
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 	<script src="<?=$url_static?>/js/tabs.js"></script>
 
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<link rel="apple-touch-startup-image" sizes="1024x748" href="img/splash-screen-1024x748.png" />
+	<link rel="apple-touch-startup-image" sizes="768x1004" href="img/splash-screen-768x1004.png" />
+	<link rel="apple-touch-startup-image" sizes="640x960"  href="img/splash-screen-640x960.png" />
+	<link rel="apple-touch-startup-image" 				   href="img/splash-screen-320x460.png" />
+
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static//ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static//ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static//ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="/static//ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="/static//ico/favicon.png">
 </head> 
 <body>
 <?
