@@ -3,11 +3,14 @@ include_once "includes.php";
 
 abstract class Tab{
     protected $id;
+	protected $order;
     protected $title;
     protected $background;
     protected $icon;
 	
 	abstract public function getFormInclude();
+	abstract public function getHTML();
+
 	
 	public function fillDataFromRequest($request){
 		$this->id = stripslashes($request['id']);
@@ -27,7 +30,7 @@ abstract class Tab{
     public function __get($name){
         return $this->$name;
     }
-	
+		
 	public function generateRandomId($length = 20) {
 		$characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$randomString = '';

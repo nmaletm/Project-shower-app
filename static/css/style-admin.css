@@ -18,4 +18,8 @@
 	padding: 5px;
 	min-height: auto;
 }
+.order-nav{
+	cursor: pointer;
+	margin: 0;
+}
  .state-highlight { height: 40px; border: 3px dashed #aaa;}

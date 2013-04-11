@@ -1,7 +1,10 @@
 <?
-include_once "class/includes.php";
-?>
+include_once $_SERVER['DOCUMENT_ROOT']."/class/includes.php";
+$tc = TabController::getInstance();
 
+$tabs = $tc->getAll();
+
+?>
 <!DOCTYPE html> 
 <html> 
 	<head> 
@@ -34,92 +37,61 @@ include_once "class/includes.php";
 		$("div[data-role=page]").bind("pagebeforeshow", function (e, data) {
 			$.mobile.silentScroll(0);
 		});
+		$(".background-change").click(function(){
+			if($(this).attr("data-background")){
+				$(".ui-page.TabSubTabs").css("background-image","url('"+$(this).attr("data-background")+"')");
+				$(".ui-page.TabSubTabs").css("background-position","center center");
+			}
+			//alert("canvi background a: "+$(this).attr("data-background"));
+		});
 	});
 	</script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 	<script src="<?=$url_static?>/js/tabs.js"></script>
 
-	<style>
-		#footerTabs {
-			background: #FFF -webkit-radial-gradient(circle, #FFF, #dee2e4);
-		}
-		.ui-listview sup {
-			font-size: 0.6em;
-			color: #cc0000;
-		}
-	</style>
-
 </head> 
-<body> 
- 
+<body>
+<?
 
-  
-  
-<div data-role="page" id="tab-1" data-theme="b">
- 
-	<div data-role="content"> 
-		Pagina 1
-	</div>
+function getTabs($tabs, $actualId){
+	$res = "<div data-role='footer' data-position='fixed'><div data-role='navbar'>";
+	$res .= "<ul>";
+	foreach($tabs as $tab){
+		$res .= "<li><a href='#".$tab->id."' id='btn-".$tab->id."' data-role='tab' data-icon='custom'  class=' ";
+		if($tab->id == $actualId){
+			$res .= "ui-btn-active";
+		}
+		$res .= "'>".$tab->title."</a></li>";
+	}
+	$res .= "</ul>";
+	$res .= "</div></div>";
+	return $res;
+}
+
+foreach($tabs as $tab){
+	echo "<div data-role='page' id='".$tab->id."' data-theme='b' class='".get_class($tab)."'>";
+		echo $tab->getHTML();
+		echo getTabs($tabs, $tab->id);
+	echo "</div>\n";
 	
-	<div data-role="footer" data-position="fixed">
-		<div data-role="navbar">
-			<ul>
-				<li><a href="#tab-1" id="tabA" data-role="tab" data-icon="custom" class="ui-btn-active">One</a></li>
-				<li><a href="#tab-2" id="tabB" data-role="tab" data-icon="custom">Two</a></li>
-				<li><a href="#tab-3" id="tabC" data-role="tab" data-icon="custom">Three</a></li>
-			</ul>
-		</div><!-- /navbar -->
-	</div><!-- /footer -->
-		
-</div>
-<div data-role="page" id="tab-2" data-theme="b">
- 
-	<div data-role="content" id="tab-2-page-1"> 
-		Pagina 2 - pag1
-	</div>
-	<div data-role="content" id="tab-2-page-2"> 
-		Pagina 2 - pag2
-	</div>
-	<div data-role="content" id="tab-2-page-3"> 
-		Pagina 2 - pag3
-	</div>
-	<div data-role="prefooter" data-position="fixed">
-		<div data-role="navbar">
-			<ul>
-				<li><a href="#" data-content="tab-2-page-1" data-role="prefooter-tab" class="ui-btn-active ui-state-persist">Uno</a></li>
-				<li><a href="#" data-content="tab-2-page-2" data-role="prefooter-tab">Dos</a></li>
-				<li><a href="#" data-content="tab-2-page-3" data-role="prefooter-tab">Tres</a></li>
-			</ul>
-		</div>
-	</div>
-	<div data-role="footer" data-position="fixed">
-		<div data-role="navbar">
-			<ul>
-				<li><a href="#tab-1" id="tabA" data-role="tab" data-icon="custom">One</a></li>
-				<li><a href="#tab-2" id="tabB" data-role="tab" data-icon="custom" class="ui-btn-active">Two</a></li>
-				<li><a href="#tab-3" id="tabC" data-role="tab" data-icon="custom">Three</a></li>
-			</ul>
-		</div><!-- /navbar -->
-	</div><!-- /footer -->
-		
-</div>
- <div data-role="page" id="tab-3" data-theme="b">
- 
-	<div data-role="content"> 
-		Pagina 3
-	</div>
+	$css_icons .= "#btn-".$tab->id." .ui-icon {background: url('".$tab->icon."') transparent;}";
+	$css_background .= "#".$tab->id."{background: url('".$tab->background."') transparent;}";
+}
+?>
+
+<style type="text/css">
+	#footerTabs {
+		background: #FFF -webkit-radial-gradient(circle, #FFF, #dee2e4);
+	}
+	.ui-listview sup {
+		font-size: 0.6em;
+		color: #cc0000;
+	}
+	<?=$css_icons?>
 	
-	<div data-role="footer" data-position="fixed">
-		<div data-role="navbar">
-			<ul>
-				<li><a href="#tab-1" id="tabA" data-role="tab" data-icon="custom">One</a></li>
-				<li><a href="#tab-2" id="tabB" data-role="tab" data-icon="custom">Two</a></li>
-				<li><a href="#tab-3" id="tabC" data-role="tab" data-icon="custom" class="ui-btn-active">Three</a></li>
-			</ul>
-		</div><!-- /navbar -->
-	</div><!-- /footer -->
-		
-</div>
+	<?=$css_background?>
+	
+</style>
 
 </body> 
 </html> 

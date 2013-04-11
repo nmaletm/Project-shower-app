@@ -8,6 +8,10 @@ class TabHTML extends Tab{
 		return "editFormHTML.php";
 	}
 	
+	public function getHTML(){
+		return "<div data-role='content'>".$this->html."</div>";
+	}
+	
 	public function fillDataFromRequest($request){
 		parent::fillDataFromRequest($request);
 		$this->html = stripslashes($request['html']);

@@ -1,0 +1,7 @@
+Options +FollowSymLinks
+
+RewriteEngine On
+
+RewriteRule ^(.*)$ / [R=301,L]
+
+

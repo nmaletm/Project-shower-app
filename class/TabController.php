@@ -30,10 +30,20 @@ class TabController{
 		foreach($keys as $key){
 			array_push($res, unserialize($db->get($this->DB_FILE,$key)));
 		}
+		$this->order($res);
 		return $res;
-
     }
 	
+	public static function cmpTab($a, $b){
+		if ($a->order == $b->order) {
+			return 0;
+		}
+		return ($a->order < $b->order) ? -1 : 1;
+	}
+
+	public function order($list){
+		usort($list, "TabController::cmpTab");
+	}
     /*  -----  Singleton pattern ----- */
 
     // singleton instance (es crida: $t = CLASSNAME::getInstance();)

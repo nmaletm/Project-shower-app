@@ -7,7 +7,7 @@ class DB{
     
     function __construct() {
 		$this->databases = array();
-		$this->db = new Flintstone(array('dir' => $_SERVER['DOCUMENT_ROOT'].'/data/'));
+		$this->db = new Flintstone(array('dir' => $_SERVER['DOCUMENT_ROOT'].'/data/db/'));
     }
 	
 	private function loadDB($db_name){
