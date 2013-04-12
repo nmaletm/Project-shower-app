@@ -3,20 +3,24 @@ include "parts/admin.php";
 $tc = TabController::getInstance();
 
 $class = $_REQUEST['class'];
+$id = $_REQUEST['id'];
 
 if($_REQUEST['mode'] == "add" && $class){
 	$tab = new $class();
 	$tab->fillDataFromRequest($_REQUEST);
-
+	$tab->order = 9999;
 	$tc->save($tab);
 	header("Location: ?id=".$tab->id);
 	exit;
 }
-
+if($_REQUEST['mode'] == "delete" && $id){
+	$tc->delete($id);
+	header("Location: index.php");
+	exit;
+}
 $isEditing = false;
 $selectClass = false;
 
-$id = $_REQUEST['id'];
 if($id){
 	$tab = $tc->load($id);
 	$isEditing = true;

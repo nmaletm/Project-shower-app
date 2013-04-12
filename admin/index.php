@@ -24,7 +24,9 @@ $tabs = $tc->getAll();
 <?
 foreach($tabs as $tab){
 	echo "<div class='navbar order-nav' id='".$tab->id."'><div class='navbar-inner'>";
-	echo "<span class='brand'><i class='icon-resize-vertical'></i> ".$tab->title."</span><a href='editTab.php?id=".$tab->id."' class='btn pull-right'><i class='icon-pencil'></i> Editar</a>";
+	echo "<span class='brand'><i class='icon-resize-vertical'></i> ".$tab->title."</span>";
+	echo "<a href='editTab.php?id=".$tab->id."&mode=delete' class='btn pull-right'><i class='icon-trash'></i> Borrar</a> ";
+	echo "<a href='editTab.php?id=".$tab->id."' class='btn pull-right'><i class='icon-pencil'></i> Editar</a>";
 	echo "</div></div>";
 }
 ?>

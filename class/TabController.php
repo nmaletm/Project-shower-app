@@ -17,7 +17,7 @@ class TabController{
         return $db->set($this->DB_FILE,$o->id,serialize($o));
     }
     
-    public function delete($id_pregunta){
+    public function delete($id){
         $db = DB::getInstance();
         return $db->delete($this->DB_FILE,$id);
     }
