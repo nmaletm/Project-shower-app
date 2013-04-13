@@ -25,8 +25,12 @@ If you want to have the system in your server you only have to follow this steps
 If you want to make changes to the source code, you will have to fork it.
 
 ### 2. Get the code
-Pull the code to your server using the git url.
 
+Pull the code to your server using the git url, and then get all the submodules:
+```
+git clone https://github.com/nmaletm/Project-shower-app.git
+git submodule update --init
+```
 ### 3. Put the sample data
 
 Change the extension of the files in the directory /data/db/ from XXX.dat.example  to XXX.dat
