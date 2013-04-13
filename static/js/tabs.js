@@ -13,4 +13,7 @@ $(document).ready(function(){
 			$("#"+anchor.attr("data-content")).show();
 		});
 	});
+	$("a[data-role=tab]").click(function(){
+		$($(this).attr("href")).find("a[data-role=prefooter-tab]").first().click();
+	});
 });
