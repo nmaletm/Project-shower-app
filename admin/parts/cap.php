@@ -62,9 +62,10 @@
             </p>
             <ul class="nav">
               <li class="active"><a href="/admin/">Inicio</a></li>
+              <li><a href="settings.php">Configuración</a></li>
               <li><a href="editTab.php">Añadir pestaña</a></li>
               <li><a href="imageManager.php">Gestor imagenes</a></li>
-              <li><a href="/">Ver resultado</a></li>
+              <li><a href="/" target="_blank">WebApp</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

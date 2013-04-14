@@ -8,7 +8,6 @@ $id = $_REQUEST['id'];
 if($_REQUEST['mode'] == "add" && $class){
 	$tab = new $class();
 	$tab->fillDataFromRequest($_REQUEST);
-	$tab->order = 9999;
 	$tc->save($tab);
 	header("Location: ?id=".$tab->id);
 	exit;
@@ -28,17 +27,14 @@ if($id){
 else if($class){
 	$tab = new $class();
 	$tab->generateRandomId();
+	$tab->order = 9999;
 }
 else{
 	$selectClass = true;
 }
 
 $ic = ImageController::getInstance();
-$image_list = $ic->getList();
-$options_image = "";
-foreach($image_list as $image){
-	$options_image .= "<option value='".$ic->web_path.$image."'>".$image."</option>";
-}
+$options_image = $ic->getHTMLList($url_static);
 
 ?>
 <? include "parts/cap.php";?>

@@ -83,7 +83,7 @@ function getJSON(){
 		subTab.id = el.find("input[name=SubTab_id]").val();
 		subTab.title = el.find("input[name=SubTab_title]").val();
 		subTab.background = el.find("select[name=SubTab_background]").val();
-		subTab.text = el.find("textarea[name=SubTab_text]").val();
+		subTab.text = el.find("textarea[name=SubTab_text]").val().replace(/\n/g, '<br />');;
 		res.push(subTab); 
 	});
 	return JSON.stringify(res);

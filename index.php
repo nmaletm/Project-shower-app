@@ -3,6 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/class/includes.php";
 $tc = TabController::getInstance();
 
 $tabs = $tc->getAll();
+$settings = $GLOBALS['settings'];
 
 ?>
 <!DOCTYPE html> 
@@ -13,53 +14,25 @@ $tabs = $tc->getAll();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"> 	 
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" rel="stylesheet" />
-<? if(!$_REQUEST['noiOS']){ ?>
+<? if($settings->iOS){ ?>
 	<link href="<?=$url_static?>/iOS-style/ios_inspired/styles.css" rel="stylesheet" />
 <? } ?>
 	<link href="<?=$url_static?>/css/style.css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script>
-	$(document).ready(function(){
-		$(document).on("mobileinit", function(){
-		  $.mobile.defaultPageTransition = "slide";
-		});
-		$("a[data-role=tab]").each(function () {
-			var anchor = $(this);
-			anchor.bind("click", function () {
-				$.mobile.changePage(anchor.attr("href"), {
-					transition: "none",
-					changeHash: false
-				});
-				return false;
-			});
-		});
-
-		$("div[data-role=page]").bind("pagebeforeshow", function (e, data) {
-			$.mobile.silentScroll(0);
-		});
-		$(".background-change").click(function(){
-			if($(this).attr("data-background")){
-				$(".ui-page.TabSubTabs").css("background-image","url('"+$(this).attr("data-background")+"')");
-				$(".ui-page.TabSubTabs").css("background-position","center center");
-			}
-			//alert("canvi background a: "+$(this).attr("data-background"));
-		});
-	});
-	</script>
+	<script src="<?=$url_static?>/js/webApp.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 	<script src="<?=$url_static?>/js/tabs.js"></script>
 
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
-	<link rel="apple-touch-startup-image" sizes="1024x748" href="img/splash-screen-1024x748.png" />
-	<link rel="apple-touch-startup-image" sizes="768x1004" href="img/splash-screen-768x1004.png" />
-	<link rel="apple-touch-startup-image" sizes="640x960"  href="img/splash-screen-640x960.png" />
-	<link rel="apple-touch-startup-image" 				   href="img/splash-screen-320x460.png" />
 
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static//ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static//ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static//ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="/static//ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="/static//ico/favicon.png">
+	<link rel="apple-touch-startup-image" href="<?=$settings->splashscreen?>" />
+	<link rel="apple-touch-icon<?if($settings->iconPrecomposed){echo "-precomposed";}?>" href="<?=$settings->icon?>">
+    <link rel="shortcut icon" href="<?=$settings->icon?>">
+	<meta property="og:image" content="<?=$settings->icon?>" itemprop="image"/>
+    <meta property="fb:page_id" content="193732837407253" />
+	<meta property="og:url" content="<?=$settings->url?>"/>
+	<meta property="og:title" content="<?=$settings->name?>"/>
+	<meta property="og:type" content="website"/>
 </head> 
 <body>
 <?
@@ -68,11 +41,13 @@ function getTabs($tabs, $actualId){
 	$res = "<div data-role='footer' data-position='fixed' data-tap-toggle='false'><div data-role='navbar'>";
 	$res .= "<ul>";
 	foreach($tabs as $tab){
-		$res .= "<li><a href='#".$tab->id."' id='btn-".$tab->id."' data-role='tab' data-icon='custom'  class=' ";
-		if($tab->id == $actualId){
-			$res .= "ui-btn-active";
+		if ($tab instanceof Tab) {
+			$res .= "<li><a href='#".$tab->id."' id='btn-".$tab->id."' data-role='tab' data-icon='custom'  class=' ";
+			if($tab->id == $actualId){
+				$res .= "ui-btn-active";
+			}
+			$res .= "'>".$tab->title."</a></li>";
 		}
-		$res .= "'>".$tab->title."</a></li>";
 	}
 	$res .= "</ul>";
 	$res .= "</div></div>";
@@ -80,13 +55,15 @@ function getTabs($tabs, $actualId){
 }
 
 foreach($tabs as $tab){
-	echo "<div data-role='page' id='".$tab->id."' data-theme='b' class='".get_class($tab)."'>";
-		echo $tab->getHTML();
-		echo getTabs($tabs, $tab->id);
-	echo "</div>\n";
-	
-	$css_icons .= "#btn-".$tab->id." .ui-icon {background: url('".$tab->icon."') transparent;}";
-	$css_background .= "#".$tab->id."{background: url('".$tab->background."') transparent;}";
+	if ($tab instanceof Tab) {
+		echo "<div data-role='page' id='".$tab->id."' data-theme='b' class='".get_class($tab)."'>";
+			echo $tab->getHTML();
+			echo getTabs($tabs, $tab->id);
+		echo "</div>\n";
+		
+		$css_icons .= "#btn-".$tab->id." .ui-icon {background: url('".$tab->icon."') transparent;}";
+		$css_background .= "#".$tab->id."{background: url('".$tab->background."') transparent;}";
+	}
 }
 ?>
 

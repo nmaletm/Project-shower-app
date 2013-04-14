@@ -9,8 +9,15 @@ include_once "TabHTML.php";
 include_once "TabSubTabs.php";
 include_once "TabController.php";
 
+include_once "Settings.php";
+include_once "SettingsController.php";
+
 include_once "ImageController.php";
 
-$web_name = "Project";
+$tc = SettingsController::getInstance();
+$settings = $tc->load();
+$GLOBALS["settings"] = $settings;
+
+$web_name = $settings->name;
 $url_static = "/static/";
 ?>

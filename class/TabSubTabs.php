@@ -20,11 +20,11 @@ class TabSubTabs extends Tab{
 			$res .= "<div data-role='content' id='".$tab->id."'>".$tab->text."</div>";
 		}
 		// Add the subtabs
-		$res .= "<div data-role='prefooter' data-position='fixed'><div data-role='navbar'><ul>";
+		$res .= "<div data-role='prefooter' data-position='fixed'><div data-role='navbar'  data-tap-toggle='false'><ul>";
 		$first = 1;
 		foreach($subTabs as $tab){
-			$res .= "<li><a href='#' data-content='".$tab->id."' data-role='prefooter-tab' ";
-			$res .= "data-background='".$tab->background."' class='background-change ".(($first)?"ui-btn-active":"")." ui-state-persist'>".$tab->title."</a></li>";
+			$res .= "<li><a href='#' data-content='".$tab->id."' data-icon='grid' data-theme='a'  data-role='prefooter-tab' ";
+			$res .= "data-background='".$tab->background."' class='background-change ".(($first)?"ui-btn-active":"")."'>".$tab->title."</a></li>";
 			$first = 0;
 		}
 		$res .= "</ul></div></div>";
@@ -33,7 +33,7 @@ class TabSubTabs extends Tab{
 	
 	public function fillDataFromRequest($request){
 		parent::fillDataFromRequest($request);
-		$this->subTabs = stripslashes($request['subTabs']);
+		$this->subTabs = stripslashes(nl2br($request['subTabs']));
 	}
 	
 	public function __set($name, $value){

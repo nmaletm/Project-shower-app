@@ -53,6 +53,15 @@ class ImageController{
 		closedir($handler);
 		return $results;
 	}
+	
+	public function getHTMLList($url_static){
+		$image_list = $this->getList();
+		$options_image = "<option value='".$url_static."/img/transparent.png'>Sin imagen</option>";
+		foreach($image_list as $image){
+			$options_image .= "<option value='".$this->web_path.$image."'>".$image."</option>";
+		}
+		return $options_image;
+	}
     /*  -----  Singleton pattern ----- */
 
     // singleton instance (es crida: $t = CLASSNAME::getInstance();)
