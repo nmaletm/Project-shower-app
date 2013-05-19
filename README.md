@@ -48,15 +48,15 @@ Then at the file admin/editTab.php you can add the new type at the list of types
 ## Author
 
 [Néstor Malet][0] - [GitHub profile][1]
+[Project website][4]
 
 ## License
 [Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0)][3]
 
 ![Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0)][2]
 
-
  [0]: http://www.storn.es/en/home
  [1]: https://github.com/nmaletm
  [2]: http://i.creativecommons.org/l/by-nc/3.0/88x31.png
  [3]: http://creativecommons.org/licenses/by-nc/3.0/
-
+ [4]: http://nmaletm.github.io/Project-shower-app/
