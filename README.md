@@ -48,6 +48,7 @@ Then at the file admin/editTab.php you can add the new type at the list of types
 ## Author
 
 [Néstor Malet][0] - [GitHub profile][1]
+
 [Project website][4]
 
 ## License
