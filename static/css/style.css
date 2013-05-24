@@ -26,3 +26,6 @@ div[data-role=content]:first-child{
 }
 
 
+.ui-grid-c > *:nth-child(n){
+	margin-right: 0;
+}

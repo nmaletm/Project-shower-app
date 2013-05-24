@@ -91,15 +91,18 @@ if($username && $password){
       <script src="/bootstrap/js/html5shiv.js"></script>
     <![endif]-->
 
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?=$url_static?>/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?=$url_static?>/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?=$url_static?>/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="<?=$url_static?>/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="<?=$url_static?>/ico/favicon.png">
-  </head>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
 
-  <body>
+	<link rel="apple-touch-startup-image" href="<?=$settings->splashscreen?>" />
+	<link rel="apple-touch-icon<?if($settings->iconPrecomposed){echo "-precomposed";}?>" href="<?=$settings->icon?>">
+    <link rel="shortcut icon" href="<?=$settings->icon?>">
+	<meta property="og:image" content="<?=$settings->url?>/<?=$settings->icon?>" itemprop="image"/>
+    <meta property="fb:page_id" content="193732837407253" />
+	<meta property="og:url" content="<?=$settings->url?>"/>
+	<meta property="og:title" content="<?=$settings->name?>"/>
+	<meta property="og:type" content="website"/>
+</head>
+<body>
 
     <div class="container">
       <form class="form-signin" method="post">

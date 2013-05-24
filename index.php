@@ -18,6 +18,9 @@ $settings = $GLOBALS['settings'];
 	<link href="<?=$url_static?>/iOS-style/ios_inspired/styles.css" rel="stylesheet" />
 <? } ?>
 	<link href="<?=$url_static?>/css/style.css" rel="stylesheet" />
+<? if($settings->cssInclude){ ?>
+	<link href="<?=$settings->cssInclude?>" rel="stylesheet" />
+<? } ?>
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script src="<?=$url_static?>/js/webApp.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
@@ -28,7 +31,7 @@ $settings = $GLOBALS['settings'];
 	<link rel="apple-touch-startup-image" href="<?=$settings->splashscreen?>" />
 	<link rel="apple-touch-icon<?if($settings->iconPrecomposed){echo "-precomposed";}?>" href="<?=$settings->icon?>">
     <link rel="shortcut icon" href="<?=$settings->icon?>">
-	<meta property="og:image" content="<?=$settings->icon?>" itemprop="image"/>
+	<meta property="og:image" content="<?=$settings->url?>/<?=$settings->icon?>" itemprop="image"/>
     <meta property="fb:page_id" content="193732837407253" />
 	<meta property="og:url" content="<?=$settings->url?>"/>
 	<meta property="og:title" content="<?=$settings->name?>"/>

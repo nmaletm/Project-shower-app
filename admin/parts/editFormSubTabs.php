@@ -25,7 +25,7 @@ $isEditing = $GLOBALS['isEditing'];
 	</div>
 
 <script type="text/javascript">
-var subTabs = <?=($tab->subTabs)?$tab->subTabs:"''"?>;
+var subTabs = <?=($tab->subTabs)?str_replace("</script>", "\<\/script\>", $tab->subTabs):"''"?>;
 
 var placer;
 $(document).ready(function(){

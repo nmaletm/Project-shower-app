@@ -8,6 +8,7 @@ class Settings{
     protected $icon;
     protected $iconPrecomposed;
     protected $splashscreen;
+    protected $cssInclude;
 	
 	
 	public function fillDataFromRequest($request){
@@ -17,6 +18,7 @@ class Settings{
 		$this->icon = stripslashes($request['icon']);
 		$this->iconPrecomposed = stripslashes($request['iconPrecomposed']);
 		$this->splashscreen = stripslashes($request['splashscreen']);
+		$this->cssInclude = stripslashes($request['cssInclude']);
 	}
 	
     function __construct() {

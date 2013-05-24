@@ -27,6 +27,8 @@ $options_image = $ic->getHTMLList($url_static);
     <input type="hidden" name="mode" value="save"/>
 	<h5>Nombre de la app</h5>
 	<input type="text" name="name" value="<?=$settings->name?>"  placeholder="Nombre de la app" class="input-block-level"/>
+	<h5>URL</h5>
+	<input type="text" name="url" value="<?=$settings->url?>"  placeholder="URL de la app" class="input-block-level"/>
 	<h5>Icono de la app</h5>
 	<label class="checkbox">
 		<input type="checkbox" value="1" name="iconPrecomposed" <?if($settings->iconPrecomposed){echo "checked='checked'";}?>>
@@ -49,6 +51,9 @@ $options_image = $ic->getHTMLList($url_static);
 		<input type="checkbox" value="1" name="iOS" <?if($settings->iOS){echo "checked='checked'";}?>>
 		Estilo iOS activado
 	</label>
+
+	<h5>Estilo css custom</h5>
+	<input type="text" name="cssInclude" value="<?=$settings->cssInclude?>"  placeholder="URL del fichero css" class="input-block-level"/>
 
 
     <div class="form-actions">
