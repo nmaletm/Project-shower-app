@@ -30,3 +30,4 @@ $(window).load(function(){
 		$('.tab-ui-normal').removeClass('ui-mini');
 	});
 });
+document.ontouchmove = function(e) {e.preventDefault()};
