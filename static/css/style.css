@@ -26,6 +26,14 @@ div[data-role=content]:first-child{
 }
 
 
-.ui-grid-c > *:nth-child(n){
-	margin-right: 0;
+.ui-icon.ui-icon-custom{
+    background-size: contain !important;
+}
+
+.ui-page {
+    background-size: cover !important;
+}
+
+div[data-role=prefooter] .ui-navbar.ui-mini{
+    background: #000;
 }
