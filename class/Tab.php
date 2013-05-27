@@ -31,7 +31,11 @@ abstract class Tab{
     public function __get($name){
         return $this->$name;
     }
-		
+	
+	public function getCacheURLFiles($array){
+
+	}
+
 	public function generateRandomId($length = 20) {
 		$characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$randomString = '';

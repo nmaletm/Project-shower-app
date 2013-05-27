@@ -13,8 +13,9 @@ class TabSubTabs extends Tab{
 	}
 	
 	public function getHTML(){
-		$preload_images = array();
 		$subTabs = json_decode($this->subTabs);
+
+		$preload_images = array();
 		// Add content
 		$res = "";
 		foreach($subTabs as $tab){
@@ -35,6 +36,13 @@ class TabSubTabs extends Tab{
 			$res .= "<script>$(document).ready(function(){\$(['".implode("','",$preload_images)."']).preload();});</script>";
 		} 
 		return $res;
+	}
+	
+	public function getCacheURLFiles($array){
+		$subTabs = json_decode($this->subTabs);
+		foreach($subTabs as $tab){
+			array_push($array, $tab->background);
+		}
 	}
 
 	public function fillDataFromRequest($request){
