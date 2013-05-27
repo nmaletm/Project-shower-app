@@ -38,7 +38,7 @@ class TabSubTabs extends Tab{
 		return $res;
 	}
 	
-	public function getCacheURLFiles($array){
+	public function getCacheURLFiles(&$array){
 		$subTabs = json_decode($this->subTabs);
 		foreach($subTabs as $tab){
 			array_push($array, $tab->background);
