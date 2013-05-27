@@ -13,6 +13,7 @@ class TabSubTabs extends Tab{
 	}
 	
 	public function getHTML(){
+		$preload_images = array();
 		$subTabs = json_decode($this->subTabs);
 		// Add content
 		$res = "";
@@ -26,11 +27,16 @@ class TabSubTabs extends Tab{
 			$res .= "<li><a href='#' data-content='".$tab->id."' data-icon='grid' data-theme='a'  data-role='prefooter-tab' ";
 			$res .= "data-background='".$tab->background."' class='background-change ".(($first)?"ui-btn-active":"")."'>".$tab->title."</a></li>";
 			$first = 0;
+			array_push($preload_images, $tab->background);
 		}
 		$res .= "</ul></div></div>";
+
+		if(count($preload_images)){
+			$res .= "<script>$(document).ready(function(){\$(['".implode("','",$preload_images)."']).preload();});</script>";
+		} 
 		return $res;
 	}
-	
+
 	public function fillDataFromRequest($request){
 		parent::fillDataFromRequest($request);
 		$this->subTabs = stripslashes(nl2br($request['subTabs']));

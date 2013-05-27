@@ -5,6 +5,8 @@ $tc = TabController::getInstance();
 $tabs = $tc->getAll();
 $settings = $GLOBALS['settings'];
 
+$preload_images = array();
+
 ?>
 <!DOCTYPE html> 
 <html> 
@@ -66,6 +68,8 @@ foreach($tabs as $tab){
 		
 		$css_icons .= "#btn-".$tab->id." .ui-icon {background: url('".$tab->icon."') transparent;}";
 		$css_background .= "#".$tab->id."{background: url('".$tab->background."') transparent;}";
+
+		array_push($preload_images, $tab->background);
 	}
 }
 ?>
@@ -83,6 +87,12 @@ foreach($tabs as $tab){
 	<?=$css_background?>
 	
 </style>
-
+<? if(count($preload_images)){ ?>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(['<?=implode("','",$preload_images)?>']).preload();
+		});
+	</script>
+<? } ?>
 </body> 
 </html> 
