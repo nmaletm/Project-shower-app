@@ -9,11 +9,15 @@ if($_REQUEST['mode'] == "add" && $class){
 	$tab = new $class();
 	$tab->fillDataFromRequest($_REQUEST);
 	$tc->save($tab);
+	$sc = SettingsController::getInstance();
+	$sc->clearCache();
 	header("Location: ?id=".$tab->id);
 	exit;
 }
 if($_REQUEST['mode'] == "delete" && $id){
 	$tc->delete($id);
+	$sc = SettingsController::getInstance();
+	$sc->clearCache();
 	header("Location: index.php");
 	exit;
 }

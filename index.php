@@ -9,7 +9,7 @@ $preload_images = array();
 
 ?>
 <!DOCTYPE html> 
-<html> 
+ <html manifest="default.manifest">
 	<head> 
 	<meta charset="utf-8" /> 
 	<title><?=$web_name?></title> 

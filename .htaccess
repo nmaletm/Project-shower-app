@@ -1,0 +1,3 @@
+AddType application/x-httpd-php .manifest
+RewriteEngine On
+RewriteRule ^default\.manifest$ default.manifest.php [NC]

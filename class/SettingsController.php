@@ -22,7 +22,12 @@ class SettingsController{
         $db = DB::getInstance();
         return $db->delete($this->DB_FILE,$this->id);
     }
-    
+
+    public function clearCache(){
+        $settings = $this->load();
+        $settings->cacheRand = rand();
+        $this->save($settings);
+    }    
 
     /*  -----  Singleton pattern ----- */
 

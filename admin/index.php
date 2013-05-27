@@ -35,6 +35,8 @@ foreach($tabs as $tab){
 </div>
 <br>
 <a href="editTab.php" class="btn">Añadir pestaña</a>
+<hr>
+<a href="clearCache.php" class="btn btn-danger btn-large"><i class="icon-refresh icon-white"></i> Borrar cache</a>
 
 <script type="text/javascript">
 $(document).ready(function(){

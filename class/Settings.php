@@ -9,6 +9,7 @@ class Settings{
     protected $iconPrecomposed;
     protected $splashscreen;
     protected $cssInclude;
+    protected $cacheRand;
 	
 	
 	public function fillDataFromRequest($request){
@@ -19,9 +20,10 @@ class Settings{
 		$this->iconPrecomposed = stripslashes($request['iconPrecomposed']);
 		$this->splashscreen = stripslashes($request['splashscreen']);
 		$this->cssInclude = stripslashes($request['cssInclude']);
+		$this->cacheRand = rand();
 	}
 	
-    function __construct() {
+    public function __construct() {
 	
     }
     
